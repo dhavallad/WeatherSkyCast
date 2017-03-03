@@ -2,27 +2,27 @@
 # and render_template, to render our templates (form and response)
 # we'll use url_for to get some URLs for the app on the templates
 from flask import Flask, render_template, request, url_for
+from geolocation.main import GoogleMaps
+import requests,json
+import datetime
+import numpy as np
+import csv
+from itertools import izip
+
 
 # Initialize the Flask application
 app = Flask(__name__)
 
 # Define a route for the default URL, which loads the form
-@app.route('/')
+@app.route('/', methods=['GET'])
 def form():
     return render_template('form_submit.html')
 
 # Define a route for the action of the form, for example '/hello/'
 # We are also defining which type of requests this route is 
 # accepting: POST requests in this case
-@app.route('/hello/', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def hello():
-	name=request.form['yourname']
-	pwd=request.form['pwd']
-	return render_template('form_action.html', name=name, pwd=pwd)	
-	# if (name == "dhaval"):
-	# 	return render_template('form_action.html', name=name, email=email)	
-	# else:
-	# 	return render_template('form_submit.html', name=name, email=email)	
-# Run the app :)
-if __name__ == '__main__':
-  app.run(port=5002)
+    email=request.form['youremail']
+    return render_template('home.html', name=email)
+
