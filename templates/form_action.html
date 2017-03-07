@@ -1,106 +1,19 @@
  <html>
     <head>
-<script>
-
-function setCookie(cname,cvalue) {
-    document.cookie = cname + "=" + cvalue + ";";
-}
-
-function getCookie(cname) {
-
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function gote() {
-   var a = Cookies.get({{name}});
-   alert(a);
-}
-
-function checkCookie() {
-    name = document.getElementById('naaa').innerHtml;
-    // var x = document.getElementsByTagName("strong")[0].textContent
-    // // alert(x);
-    value = document.getElementById('find').value;
-    // alert(x+"--"+value);
-
-    // setCookie(us, user);
-    var user = getCookie(name);
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-        setCookie(name, value);
-        alert("new user");
-    }
-}
-
-
-function se() {
-    // name = document.getElementById('naaa').innerHtml;
-    var name = document.getElementsByTagName("strong")[0].textContent
-    // // alert(x);
-    value = document.getElementById('find').value;
-    // alert(x+"--"+value);
-    alert(getCookie(name))
-    alert(value)
-    var a = value + "||" + getCookie(name);
-    setCookie(name,a)
-    alert("cokkie seted to " + name +" as " + a)
-}
-
-function getCookieValue() {
-    // name = document.getElementById('naaa').innerHtml;
-    var name = document.getElementsByTagName("strong")[0].textContent
-    var user = getCookie(name);
-    alert("All cookies values " + document.cookie);
-}
-
-function showlast(){
-    var name = document.getElementsByTagName("strong")[0].textContent
-    var values = getCookie(name);
-    var res = values.split("||");
-    res.join()
-    var element = document.getElementById("lastsearched");
-    element.innerHTML = "<li>" + res.join("</li><li>");
-}
-
-
-</script>
-
-
         <title>Handle POST requests with Flask</title>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     </head>
-    <body onload="showlast()">
-
+    <body>
         <div id="container">
             <div class="title">
                 <h1>POST request with Flask</h1>
-                <button onclick="getCookieValue()"> Get Cookie </button>
             </div>
             <div id="content">
-                Hello <strong id="naaa">{{name}}</strong>
-                <input name="find" id="find" type="text"/>
-                <button onclick="se()"> Search </button>
-                
-                
-            </div>]
-                Last Searched: <br>
-            <ul id="lastsearched">
-
-            </ul>
+                Hello <strong>{{name}}</strong> ({{email}})!
+            </div>
+            
+               
+            
         </div>
-        
     </body>
 </html>
