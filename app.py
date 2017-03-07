@@ -26,3 +26,24 @@ def hello():
     email=request.form['youremail']
     return render_template('home.html', name=email)
 
+@app.route('/qwe', methods=['POST'])
+def qwe():
+	#name= request.form['uname']
+	#print "Hi"
+	address=request.form['addr']
+	google_maps = GoogleMaps(api_key='AIzaSyBCCeBBAs_GOkEphWvfpdw0VaeR-SrH-F4') 
+
+	location = google_maps.search(location=address) # sends search to Google Maps.
+	my_location = location.first()
+	#print(my_location.lat)
+	#print(my_location.lng)
+	url = "https://api.darksky.net/forecast/63ba9bb3c3e8270e19c1f1b27a81d090/" + str(my_location.lat) + "," + str(my_location.lng)
+	#print url
+	r = requests.get(url)
+	parseString = json.loads(r.text)
+
+	current= parseString['currently']
+	t= parseString['hourly']
+	list1=t['data']
+	curr= parseString['currently']
+	#print curr
